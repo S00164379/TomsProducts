@@ -1,0 +1,47 @@
+
+
+<div class='card'>
+  <h3 class='card-header bg-primary text-white'>
+  {{title}}
+  </h3>
+  <div class='card-body'>
+      <div class="input-group mb-3">
+          <input type="text" [(ngModel)]='listFilter' class="form-control" placeholder="Filter by:" aria-label="Filter by:" aria-describedby="basic-addon1" ng-change="filter()">
+        </div>
+        <input type="checkbox" name="vehicle1" value="kids" [(ngModel)]="kidsfilter" (ngModelChange)="performFilter2()"> kids
+<input type="checkbox" name="vehicle2" value="men" [(ngModel)]="mensfilter" (ngModelChange)="performFilter2()"> Men
+<input type="checkbox" name="vehicle2" value="woman" [(ngModel)]="womanfilter" (ngModelChange)="performFilter2()"> Womens
+
+      <div class='table-responsive'>
+          <table class='table'>
+              <thead>
+                  <tr>
+                      <th>
+                          <button class='btn btn-primary' (click)="hideimage()">
+                              Show Image
+                          </button>
+                      </th>
+                      <th>Product</th>
+                      <th>Code</th>
+                      <th>Available</th>
+                      <th>Catagory</th>
+                      <th>Price</th>
+                      <th>5 Star Rating</th>
+                  </tr>
+              </thead>
+              <tbody>
+                 <tr *ngFor="let product of filteredProducts">
+                   <td><img *ngIf="showImage" src={{product.imageUrl}} width="25px"></td>
+                   <td>{{product.bikeName}}</td>
+                   <td>{{product.bikeCode}}</td>
+                   <td>{{product.releaseDate}}</td>
+                   <td>{{product.category}}</td>
+                   <td>{{product.price}}</td>
+                   <td><app-star-rating [rating]='product.starRating'></app-star-rating></td>
+                   <td><button class="btn btn-primary" (click)="deleteProduct(product.id)">Delete</button></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
